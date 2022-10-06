@@ -398,14 +398,16 @@ open class EasyTipView: UIView {
         super.init(frame: CGRect.zero)
         
         self.backgroundColor = UIColor.clear
-        
+
+        #if os(iOS)
         #if swift(>=4.2)
         let notificationName = UIDevice.orientationDidChangeNotification
         #else
         let notificationName = NSNotification.Name.UIDeviceOrientationDidChange
         #endif
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(handleRotation), name: notificationName, object: nil)
+        #endif
     }
     
     deinit
